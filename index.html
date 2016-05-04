@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<title> Parse JSON </title>
+	<link rel="stylesheet" href="assets/css/main.css"> 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+<body ng-app="parseJsonApp">
+	<div ng-controller="HomeController">
+		<div class="container">
+			<div class="jumbotron">
+			<h1>bienvenue sur le projet Parse Json</h1> 
+			<form>
+				<h2>Filter</h2>
+				<div class="form-group">
+					<label for="exampleInputEmail1">Search by name</label>
+					<input type="text" ng-model="searchName" class="form-control" id="exampleInputEmail1" placeholder="search"/>
+				</div>
+				<div class="form-group">
+					<label for="exampleInputEmail1">Search by age</label>
+					<input type="text" ng-model="searchAge" class="form-control" id="exampleInputEmail1" placeholder="search"/>
+				</div>
+			</form>
+			</div>
+			
+			<div ng-repeat="user in users | filter:{'name':searchName, 'age':searchAge}">
+
+				<h3 ng-bind="user.name"></h3>
+				<p>phone:
+					<span ng-bind="user.phone"></span></p>
+					<p> age: <span ng-bind="user.age"></span></p>
+					<p>adress: <span ng-bind="user.adress"></span></p>
+					<ul>
+						<li ng-repeat="(key, tech) in user.techs">
+							<span ng-bind="key"></span>
+							<span ng-bind="tech"></span>
+						</li>
+					</ul>
+				</div>
+			</div>	
+		</div>
+	<footer> 
+		<script src="node_modules/angular/angular.min.js" type="text/javascript"></script>
+		<script src="assets/js/core/app.js" type="text/javascript"></script>
+		<script src="assets/js/controllers/home.js" type="text/javascript"></script>
+	</footer>
+</body>
+</html>
